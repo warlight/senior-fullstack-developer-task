@@ -12,10 +12,11 @@ export class AppController {
   @UseGuards(AuthGuard)
   @Get()
   getHello(@Req() request: RequestWithUser) {
+    console.log(request.user);
     return {
       id: request.user.id,
       username: request.user.username,
-      role: request.user.role,
+      roles: request.user.roles,
       status: request.user.status,
     };
   }
