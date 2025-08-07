@@ -24,13 +24,12 @@ const handleLogin = async () => {
 	try {
 		error.value = ""
 
-		const response = await axios.post(`/api/users/login/${username.value}`)
+		const response = await axios.post(`/api/users/login`, {username: username.value})
 
 		if (response.data) {
       userStore.commit('setUser', response.data);
 			await router.push({
 				path: "/home",
-				query: { username: username.value },
 			})
 		}
 	} catch (err) {

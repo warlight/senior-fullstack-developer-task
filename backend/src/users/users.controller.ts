@@ -6,7 +6,7 @@ import { User } from './users.entity';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post('/login/:username')
+  @Post('/login')
   async login(@Param('username') username: string): Promise<User> {
     const user = await this.usersService.findByUsername(username);
 
