@@ -5,24 +5,27 @@ export default createStore({
 		// Define your state here
 		username: null,
 		roles: [],
-		authrorized: false
+		authorized: false,
+		status: null,
 	},
 	getters: {
 		// Define your getters here
 		getUserName: state => state.username,
 		getRoles: state => state.roles,
-		getAuth: state => state.authrorized,
+		getAuth: state => state.authorized,
 	},
 	mutations: {
 		setUser(state, user) {
 			state.username = user.username;
 			state.roles = user.roles;
-			state.authrorized = true;
+			state.authorized = true;
+			state.status = user.status;
 		},
 		logout(state) {
 			state.username = null;
 			state.roles = [];
-			state.authrorized = false;
+			state.authorized = false;
+			state.status = null;
 		}
 		// Define your mutations here
 	},
