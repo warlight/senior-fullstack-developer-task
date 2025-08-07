@@ -1,5 +1,11 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
+export enum UserStatus {
+  Enabled = 'Enabled',
+  Disabled = 'Disabled',
+  Deleted = 'Deleted',
+}
+
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
@@ -11,6 +17,10 @@ export class User {
   @Column('json')
   roles: string[];
 
-  @Column()
-  status: boolean;
+  @Column({
+    type: 'text',
+    enum: UserStatus,
+    default: UserStatus.Enabled,
+  })
+  status: UserStatus;
 }
