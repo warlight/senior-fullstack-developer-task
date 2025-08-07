@@ -13,10 +13,12 @@
 import { ref } from "vue"
 import { useRouter } from "vue-router"
 import axios from "axios"
+import {useStore} from "vuex";
 
 const router = useRouter()
 const username = ref("")
 const error = ref("")
+const userStore = useStore();
 
 const handleLogin = async () => {
 	try {
@@ -25,8 +27,8 @@ const handleLogin = async () => {
 		const response = await axios.post(`/api/users/login/${username.value}`)
 
 		if (response.data) {
-      console.log(response.data);
-			router.push({
+      userStore.commit('setUser', response.data);
+			await router.push({
 				path: "/home",
 				query: { username: username.value },
 			})

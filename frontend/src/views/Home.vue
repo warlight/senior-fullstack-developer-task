@@ -6,9 +6,11 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
+import {useStore} from "vuex";
+import {computed} from "vue";
 
-const username = ref("")
+const userStore = useStore();
+const username = computed(() => userStore.getters.getUserName);
 </script>
 
 <style scoped>
