@@ -25,6 +25,7 @@ const handleLogin = async () => {
 		const response = await axios.post(`/api/users/login/${username.value}`)
 
 		if (response.data) {
+      console.log(response.data);
 			router.push({
 				path: "/home",
 				query: { username: username.value },
